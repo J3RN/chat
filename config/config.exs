@@ -26,6 +26,12 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# Configure Pow
+config :chat, :pow,
+  user: Chat.Accounts.User,
+  repo: Chat.Repo,
+  web_module: ChatWeb
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
