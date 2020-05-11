@@ -1,5 +1,6 @@
 defmodule ChatWeb.Router do
   use ChatWeb, :router
+  use Pow.Phoenix.Router
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -14,16 +15,28 @@ defmodule ChatWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :protected do
+    plug Pow.Plug.RequireAuthenticated,
+      error_handler: Pow.Phoenix.PlugErrorHandler
+  end
+
+  scope "/" do
+    pipe_through :browser
+
+    pow_routes()
+  end
+
+  # Unprotected routes
   scope "/", ChatWeb do
     pipe_through :browser
 
     live "/", PageLive, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ChatWeb do
-  #   pipe_through :api
-  # end
+  # Protected routes
+  scope "/", ChatWeb do
+    pipe_through [:browser, :protected]
+  end
 
   # Enables LiveDashboard only for development
   #
