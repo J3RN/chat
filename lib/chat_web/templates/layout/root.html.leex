@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "Chat", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "Messages", suffix: " · Chat" %>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
@@ -13,8 +13,16 @@
     <header>
       <section class="container">
         <nav role="navigation">
-          <%= @current_user && @current_user.username %>
-          <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %>
+          <ul>
+            <li><%= link "Chat", to: "/" %></li>
+            <li>
+              <%= if @current_user && @current_user.username do %>
+                <%= link "Sign out", to: Routes.pow_session_path(@conn, :delete), method: :delete %>
+              <% else %>
+                <%= link "Sign in", to: Routes.pow_session_path(@conn, :new) %>
+              <% end %>
+            </li>
+          </ul>
         </nav>
       </section>
     </header>
