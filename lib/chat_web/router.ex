@@ -30,7 +30,6 @@ defmodule ChatWeb.Router do
   scope "/", ChatWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
   end
 
   # Protected routes
