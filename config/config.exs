@@ -10,6 +10,8 @@ use Mix.Config
 config :chat,
   ecto_repos: [Chat.Repo]
 
+config :chat, Chat.Repo, migration_timestamps: [type: :utc_datetime_usec]
+
 # Configures the endpoint
 config :chat, ChatWeb.Endpoint,
   url: [host: "localhost"],

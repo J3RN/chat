@@ -1,5 +1,5 @@
 defmodule Chat.Accounts.User do
-  use Ecto.Schema
+  use Chat.Schema
   use Pow.Ecto.Schema
   import Ecto.Changeset
 
