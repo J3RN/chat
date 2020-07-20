@@ -1,0 +1,18 @@
+<section id="directory" class="pane">
+  <section class="header">Directory</section>
+
+  <section id="channel-list">
+    <ul>
+      <%= for channel <- @channels do %>
+        <li><%= link channel.title, to: Routes.channel_path(@socket, :channel, channel.id) %></li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section id="new-channel">
+    <form phx-submit="new_channel">
+      <input type="text" name="channel_name" />
+      <input type="submit" value="Create channel" />
+    </form>
+  </section>
+</section>

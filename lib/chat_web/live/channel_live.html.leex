@@ -1,0 +1,25 @@
+<section id="channel" class="pane">
+  <section class="header">
+    Messages
+  </section>
+
+  <section class="body">
+    <section id="messages">
+      <ul>
+        <%= for message <- Enum.reverse(@messages) do %>
+          <li class=<%= class(message, @user_id) %>>
+            <div class="username"><%= message.user.username %></div>
+            <div class="text"><%= message.text %></div>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+
+    <section id="new-message">
+      <form phx-submit="send_message">
+        <input type="text" name="new_message" />
+        <input type="submit" value="Send" />
+      </form>
+    </section>
+  </section>
+</section>

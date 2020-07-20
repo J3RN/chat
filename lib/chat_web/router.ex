@@ -20,6 +20,10 @@ defmodule ChatWeb.Router do
       error_handler: Pow.Phoenix.PlugErrorHandler
   end
 
+  pipeline :live_view do
+    plug ChatWeb.Plug.LiveViewAuth
+  end
+
   scope "/" do
     pipe_through :browser
 
@@ -35,7 +39,10 @@ defmodule ChatWeb.Router do
 
   # Protected routes
   scope "/", ChatWeb do
-    pipe_through [:browser, :protected]
+    pipe_through [:browser, :protected, :live_view]
+
+    live "/channels", DirectoryLive, :directory
+    live "/channels/:channel_id", ChannelLive, :channel
   end
 
   # Enables LiveDashboard only for development

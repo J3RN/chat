@@ -39,14 +39,17 @@ a {
   text-decoration: none;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+}
+
 header {
   background: $light-gray;
   font-size: 1.5 em;
   line-height: 3;
 
   ul {
-    margin: 0;
-    padding: 0;
     display: inline;
 
     li {
@@ -68,18 +71,28 @@ header {
   margin: 0 auto;
 }
 
-.header {
-  font-size: 1.5rem;
-  background: $light-gray;
+#channel li {
+  display: block;
   padding: 15px;
   border-bottom: 1px solid $border;
+
+  .username {
+    font-weight: bold;
+  }
 }
 
-#chat-pane {
+.pane {
   height: 100%;
 
   border-radius: 4px;
   border: 1px solid $border;
+
+  .header {
+    font-size: 1.5rem;
+    background: $light-gray;
+    padding: 15px;
+    border-bottom: 1px solid $border;
+  }
 
   form {
     margin: 15px;
